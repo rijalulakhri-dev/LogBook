@@ -57,8 +57,8 @@ $route['admin/tambah_user/process'] = 'admin/View_controller/pro_add_user';
 
 
 $route['siswa/daftar_logbook'] = 'siswa/Main_controller/index';
-$route['siswa/logbook/kirim_logbook'] = 'siswa/Main_controller/sendLogBook';
-$route['siswa/logbook/kirim_logbook/process'] = 'siswa/Main_controller/proLogBook';
+$route['siswa/logbook/kirim_logbook/(:any)/(:any)'] = 'siswa/Main_controller/sendLogBook/$1/$2';
+$route['siswa/logbook/kirim_logbook/process/(:any)/(:any)'] = 'siswa/Main_controller/proLogBook/$1/$2';
 $route['siswa/registrasi_program'] = 'siswa/Main_controller/registerProgram';
 $route['siswa/process/registrasi_program'] = 'siswa/Main_controller/proRegisterProgram';
 $route['siswa/profil'] = 'siswa/Main_controller/profilBiodata';

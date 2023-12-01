@@ -43,6 +43,11 @@ class View_models extends CI_Model {
 		
 	}
 
+	public function getDay_specific()
+	{
+		
+	}
+
 	public function last_number_project()
 	{
 		$this->db->select('noBadge');

@@ -9,7 +9,7 @@ class Main_controller extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Insert_models', 'ins');
 		$this->load->model('View_models', 'view');
-		$this->load->library('upload');
+		$this->load->model('Logic', 'logic');
 	}
 	
 	public function index()
@@ -38,40 +38,38 @@ class Main_controller extends CI_Controller {
 	}
 
 
-	public function sendLogBook()
+	public function sendLogBook($a, $b)
 	{
+
 		$data = array(
 			'title' => 'Kirim Log Book',
 			'pages' => 'page/siswa/kirim_logbook',
 			'pageTitle' => 'Kirim Log Book Harian',
-			'action' => 'siswa/logbook/kirim_logbook/process'
+			'action' => 'siswa/logbook/kirim_logbook/process/' . $a . '/' . $b
 		);
 
 		$this->load->view('main', $data);
 		
 	}
 
-	public function proLogBook()
+	public function proLogBook($a ,$b)
 	{
-		$genTrx = 'trx-' . time() . date('Y');
-        $gambar = $_FILES['lampiran']['name'];
-        $sessions = $genTrx; // mengganti $sessions dengan $genTrx
+		$cek = $this->logic->cek_trx_by_noBadge($a)->row_array();
 
-        $path = './public/lampiran/' . $sessions . '/';
-
-        $config = array(
-            'allowed_types' => 'pdf|docx|doc|jpeg|jpg|png|odt',
-            'max_size'      => 10000,
-            'overwrite'     => TRUE,
-            'upload_path'   => $path,
-            'encrypt_name'  => FALSE,
-        );
-
-        $this->upload->initialize($config);
+		// var_dump($cek);
+		// die();
+		if ($cek == NULL) {
+			$genTrx = 'trx-' . time() . date('Y');
+			$kondisi = 0;
+		} else {
+			$kondisi = 1;
+			$genTrx = $cek['idTrx'];
+		}
 
         $data = array(
             'idTrx' => $genTrx,
-            // 'judulLogBook' => $this->input->post('judul_log_book'),
+			'noBadgeT' => $this->session->userdata('nomor_pengguna'),
+			'number_week' => $a,
             'resSiswa' => '1',
             'resPemMateri' => '0',
             'resPemRedaksi' => '0',
@@ -79,28 +77,13 @@ class Main_controller extends CI_Controller {
         );
 
         $dataTwo = array(
-            'trxIdD' => $genTrx,
-            'harianD' => $this->input->post('harian'),
-            'keteranganD' => $this->input->post('keterangan'),
-			'lampiranD'	=> $gambar = $_FILES['lampiran']['name']
+            'trxId' => $genTrx,
+            'kegiatan' => $this->input->post('kegiatan'),
+            'pengalaman' => $this->input->post('pengalaman'),
         );
-
-        if (!empty($gambar)) {
-            if ($this->upload->do_upload('lampiran')) {
-                $data_file = $this->upload->data();
-                $getFileThree = pathinfo($data_file['file_name']);
-                $path = 'FILE-' . time() . '.' . $getFileThree['extension'];
-                $dataTwo['lampiran'] = $sessions . '/' . $path;
-                rename($data_file['full_path'], $path . $path);
-            }
-        }
 		
-		// echo "<pre>";
-		// var_dump($data,$dataTwo);
-		// echo "</pre>";
-		// die();
-		$this->ins->saveLogBook($data,$dataTwo);
-		redirect('siswa/logbook/daftar_logbook','refresh');
+		$this->ins->saveLogBook($data,$dataTwo, $a, $b, $kondisi);
+		redirect('siswa/daftar_logbook','refresh');
 		
 	}
 
@@ -198,13 +181,9 @@ class Main_controller extends CI_Controller {
 
             $currentDate = date('Y-m-d', strtotime($currentDate . ' + 1 day'));
         }
-
-		
+		$this->session->set_userdata('time', 1);		
 		redirect('siswa/logbook/waktu/minggu');
-		
-        // echo "Data mingguan telah disimpan ke dalam database.";
-        // Panggil metode model untuk menyimpan data ke database
-        // $this->view->save_weekly_data($start);
+
 
         
     }
@@ -242,6 +221,8 @@ class Main_controller extends CI_Controller {
 
 	public function harianLog($a)
 	{
+
+
 		$load = $this->view->getWeek_specific($a)->result();
 		$data = array(
 			'title' => 'Isi Kegiatan',
@@ -252,6 +233,8 @@ class Main_controller extends CI_Controller {
 
 		$this->load->view('main', $data);
 	}
+
+	
 
 
 

@@ -31,7 +31,7 @@
 									<div class="col-md-12">
 										<label for="" class="form-label">Apa kegiatanmu hari
 											ini?*</label>
-										<textarea class="form-control" name="harian"
+										<textarea class="form-control" name="kegiatan"
 											rows="3"></textarea>
 									</div>
 								</div>
@@ -39,18 +39,11 @@
 									<div class="col-md-12">
 										<label for="" class="form-label">Bagaimana
 											pengalamanmu hari ini?*</label>
-										<textarea class="form-control" name="keterangan"
+										<textarea class="form-control" name="pengalaman"
 											rows="3"></textarea>
 									</div>
 								</div>
 
-								<div class="row g-3 mt-2 mb-3">
-									<div class="col-md-12">
-										<label for="" class="form-label">Upload Foto Kegiatan Max 1MB, format
-											png,jpg,jpeg,heic* </label>
-										<input class="form-control" type="file" name="lampiran">
-									</div>
-								</div>
 								<button type="submit" class="btn btn-primary waves-effect waves-light mt-3">
 									<i class=" bx bx-navigation font-size-16 align-middle me-2"></i> Simpan
 								</button>

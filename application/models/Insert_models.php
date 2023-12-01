@@ -16,11 +16,22 @@ class Insert_models extends CI_Model {
 		
 	}
 
-	public function saveLogBook($data, $dataTwo)
+	public function saveLogBook($data, $dataTwo, $a, $b, $kondisi)
 	{
-		$this->db->insert('tb_trx', $data);
-		$this->db->insert('trx_detail', $dataTwo);
-		
+		$b = date("Y-m-d", $b);
+		if ($kondisi == 0) {
+			$this->db->insert('tb_trx', $data);
+			
+		} else{
+			$this->db->where('idTrx', $data['idTrx']);
+			$this->db->update('tb_trx', $data);
+			
+		}
+		$this->db->where('week_number', $a);
+		$this->db->where('set_date', $b);
+		$this->db->where('noBadge', $this->session->userdata('nomor_pengguna'));
+		$this->db->update('weekly_data', $dataTwo);
+		return;
 	}
 
 	public function resPemMateri($data)

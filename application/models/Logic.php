@@ -15,6 +15,15 @@ class Logic extends CI_Model {
 		return $this->db->get('weekly_data', 1, 0);
 		
 	}
+
+	public function cek_trx_by_noBadge($week)
+	{
+		$this->db->where('noBadgeT', $this->session->userdata('nomor_pengguna'));
+		$this->db->where('number_week', $week);
+		return $this->db->get('tb_trx', 1, 0);
+		
+		
+	}
 	
 
 }
