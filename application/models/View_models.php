@@ -55,6 +55,15 @@ class View_models extends CI_Model {
 		
 	}
 
+	public function getWeek_specific_p($a, $b)
+	{
+		$this->db->where('week_number', $a);
+		$this->db->where('noBadge', $b);
+		$this->db->order_by('created_at', 'asc');
+		return $this->db->get('weekly_data');
+		
+	}
+
 
 	public function last_number_project()
 	{

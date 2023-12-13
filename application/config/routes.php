@@ -80,6 +80,7 @@ $route['logout'] = 'Auth_controller/logout';
 
 
 $route['cetak/(:any)'] = 'Cetak/index/$1';
+$route['cetakin/(:any)/(:any)'] = 'Cetak/index2/$1/$2';
 
 
 $route['404_override'] = '';

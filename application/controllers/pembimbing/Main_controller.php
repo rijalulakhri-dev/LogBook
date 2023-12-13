@@ -35,7 +35,8 @@ class Main_controller extends CI_Controller {
 			'title' => 'Daftar Log Book',
 			'pages' => 'page/pembimbing/daftar_logbook',
 			'pageTitle' => 'Daftar Log Book Harian',
-			'data' => $groupedData
+			'data' => $groupedData,
+			'badge' => $noBadge
 		);
 
 		$this->load->view('main', $data);

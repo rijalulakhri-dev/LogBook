@@ -45,7 +45,7 @@
 										<td>Minggu <?= $weekNumber ?></td>
 										<td><?= reset($weekDay)['set_date'] . ' sampai dengan ' . end($weekDay)['set_date']; ?>
 										</td>
-										<td><a href="<?= base_url('cetak/' . $weekNumber); ?>" target="_blank"><button
+										<td><a href="<?= base_url('cetakin/' . $weekNumber. '/'. $badge); ?>" target="_blank"><button
 													type="button"
 													class="btn btn-soft-primary waves-effect waves-light"><i
 														class="bx bx-printer font-size-16 align-middle me-2"></i>Cetak
