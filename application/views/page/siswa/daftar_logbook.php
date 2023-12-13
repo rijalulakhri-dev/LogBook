@@ -43,9 +43,20 @@
                                                 <td>Minggu <?= $weekNumber ?></td>
                                                 <td><?= reset($weekDay)['set_date'] . ' sampai dengan ' . end($weekDay)['set_date']; ?></td>
                                                 <td><a href="<?= base_url('cetak/' . $weekNumber); ?>" target="_blank"><button type="button" class="btn btn-soft-primary waves-effect waves-light"><i class="bx bx-printer font-size-16 align-middle me-2"></i>Cetak Log Book</button></a></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Materi</button>
-                                                    <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Redaksi</button>
+                                                <td style="vertical-align: middle;">
+													<?php if ($this->view->checkTrxStatus($weekDay[$weekNumber]['trxId'])->resPemMateri == 1) { ?>
+														<h5><badge type="button" class="badge badge-lg bg-success">Sudah di Approve Materi</badge></h5>
+													<?php }else { ?>
+														<h5><badge type="button" class="badge badge-lg bg-danger">Menunggu Approval Materi</badge></h5>
+													<?php } ?>
+													<?php if ($this->view->checkTrxStatus($weekDay[$weekNumber]['trxId'])->resPemRedaksi == 1) { ?>
+														<h5><badge type="button" class="badge badge-lg bg-success">Sudah di Approve Redaksi</badge></h5>
+													<?php }else { ?>
+														<h5><badge type="button" class="badge badge-lg bg-danger">Menunggu Approval Redaksi</badge></h5>
+													<?php } ?>
+
+                                                    
+                                                    
                                                 </td>
                                             </tr>
                                         <?php }

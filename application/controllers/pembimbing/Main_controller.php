@@ -58,12 +58,26 @@ class Main_controller extends CI_Controller {
 		
 		);
 
-		$this->load->view('main', $data);
-		
-
-		
+		$this->load->view('main', $data);		
 	}
 
+	function update_value($idTrx, $role) {
+		if ($role == '1') {
+			$this->db->where('idTrx', $idTrx);
+			$this->db->update('tb_trx', ['resPemMateri' => 1]);
+		}
+		if ($role == '2') {
+			$this->db->where('idTrx', $idTrx);
+			$this->db->update('tb_trx', ['resPemRedaksi' => 1]);
+		}
+		if ($role == '1' || $role == '2') {
+			redirect('pembimbing/daftar_siswa');
+		} else {
+			redirect('siswa/daftar_logbook');
+		}
+		
+		
+	}
 
 	
 

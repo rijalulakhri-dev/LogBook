@@ -82,6 +82,9 @@ $route['logout'] = 'Auth_controller/logout';
 $route['cetak/(:any)'] = 'Cetak/index/$1';
 $route['cetakin/(:any)/(:any)'] = 'Cetak/index2/$1/$2';
 
+//Trx Action
+$route['approveBy/(:any)/(:any)'] = 'pembimbing/Main_controller/update_value/$1/$2';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

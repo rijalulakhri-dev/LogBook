@@ -30,6 +30,8 @@ class View_models extends CI_Model {
 		// before
 		$this->db->where('noBadge', $noBadge);
 		$this->db->order_by('set_date', 'asc');
+		$this->db->join('tb_biodata', 'tb_biodata.noBadgeB = weekly_data.noBadge');
+		
         $query = $this->db->get('weekly_data');
         return $query->result_array();
 		
@@ -104,6 +106,11 @@ class View_models extends CI_Model {
 	function getDataByBadge()
 	{
 		
+	}
+
+	function checkTrxStatus($trxId) {
+		$this->db->where('idTrx', $trxId);
+		return $this->db->get('tb_trx')->row();
 	}
 	
 
