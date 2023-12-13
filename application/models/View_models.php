@@ -25,6 +25,15 @@ class View_models extends CI_Model {
         return $query->result_array();
 		
 	}
+	public function getWeekPembimbing($noBadge)
+	{
+		// before
+		$this->db->where('noBadge', $noBadge);
+		$this->db->order_by('set_date', 'asc');
+        $query = $this->db->get('weekly_data');
+        return $query->result_array();
+		
+	}
 
 	public function save_weekly_data($setDay, $weekNotice, $project_number) {
         $data = array(

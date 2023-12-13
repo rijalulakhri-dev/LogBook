@@ -28,9 +28,11 @@
 								<tbody>
 									<?php $no = 1;
                                     foreach ($data as $weekNumber => $weekDay) {
-                                        $isDataComplete = true;
-
+										
+										$isDataComplete = true;
+										
                                         foreach ($weekDay as $dayData) {
+	
                                             if (empty($dayData['kegiatan']) || empty($dayData['pengalaman'])) {
                                                 $isDataComplete = false;
                                                 break;

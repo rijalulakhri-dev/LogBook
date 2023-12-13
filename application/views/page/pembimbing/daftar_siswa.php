@@ -35,7 +35,7 @@
 										<td><?= $d->nimB ?></td>
 										<td><?= $d->namaB ?></td>
 										<td><?= $this->logic->getDurasiMagang($d->noBadgeB)->week_number ?> Minggu</td>
-										<td><a href="">
+										<td><a href="<?= base_url('pembimbing/daftar_logbook/'. $d->noBadgeB) ?>">
 												<span
 													class="btn btn-soft-primary btn-sm waves-effect waves-light">Lihat</span>
 										</td>

@@ -69,7 +69,7 @@ $route['siswa/logbook/waktu/minggu'] = 'siswa/Main_controller/mingguLog';
 $route['siswa/logbook/waktu/minggu/harian/(:any)'] = 'siswa/Main_controller/harianLog/$1';
 
 
-$route['pembimbing/daftar_logbook'] = 'pembimbing/Main_controller/index';
+$route['pembimbing/daftar_logbook/(:any)'] = 'pembimbing/Main_controller/index/$1';
 $route['pembimbing/daftar_siswa'] = 'pembimbing/Main_controller/detail_data';
 $route['pembimbing/daftar_logbook/approve/(:any)'] = 'pembimbing/Main_controller/updateResPemMateri/$1';
 

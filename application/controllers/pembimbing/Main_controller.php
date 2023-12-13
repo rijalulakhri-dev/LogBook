@@ -12,10 +12,10 @@ class Main_controller extends CI_Controller {
 		$this->load->model('Logic', 'logic');
 	}
 	
-	public function index()
+	public function index($noBadge)
 	{
 
-		$weeklyData = $this->view->getWeek();
+		$weeklyData = $this->view->getWeekPembimbing($noBadge);
 
         // Kelompokkan data mingguan berdasarkan weekNotice
         $groupedData = array();
@@ -27,6 +27,10 @@ class Main_controller extends CI_Controller {
         // Kirim data ke view
         $datas['groupedData'] = $groupedData;
 
+		// echo "<pre>";
+		// var_dump($groupedData);
+		// echo "</pre>";
+		// die();
 		$data = array(
 			'title' => 'Daftar Log Book',
 			'pages' => 'page/pembimbing/daftar_logbook',
