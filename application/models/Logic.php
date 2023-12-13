@@ -29,10 +29,16 @@ class Logic extends CI_Model {
 	{
 		$this->db->where('pemMateriB' , $nomor_pengguna);
 		$this->db->or_where('pemRedaksiB' , $nomor_pengguna);
-		//   $this->db->join('weekly', 'tb_biodata.noBadgeB = tb_auth.nomor_pengguna OR tb_biodata.nikB = tb_auth.nomor_pengguna', 'left');
-		return $this->db->get('tb_biodata');
+		
+		return $this->db->get('tb_biodata')->result();
 	}
 
+	function getDurasiMagang($noBadge) {
+		$this->db->order_by('week_number', 'desc');
+		$this->db->limit(1);
+		$this->db->where('noBadge',$noBadge);
+		return $this->db->get('weekly_data')->row();
+	}
 }
 
 /* End of file Logic.php */

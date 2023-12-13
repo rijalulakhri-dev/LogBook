@@ -1,3 +1,5 @@
+
+
 <div class="main-content">
 
 	<div class="page-content">
@@ -19,24 +21,28 @@
 								<thead>
 									<tr>
 										<th>No</th>
+										<th>NIM</th>
 										<th>Nama Mahasiswa</th>
 										<th>Durasi Magang</th>
-										<th>Waktu Mulai</th>
-										<th>Waktu Berakhir</th>
 										<th>Lainnya</th>
 									</tr>
 								</thead>
 								<tbody>
+									<?php $start = 1; foreach ($load as $d) { 
+										if ($this->logic->getDurasiMagang($d->noBadgeB) != null) { ?>
 									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td><?= $start++ ?></td>
+										<td><?= $d->nimB ?></td>
+										<td><?= $d->namaB ?></td>
+										<td><?= $this->logic->getDurasiMagang($d->noBadgeB)->week_number ?> Minggu</td>
 										<td><a href="">
-											<span class="btn btn-soft-primary btn-sm waves-effect waves-light">Lihat</span></td>
+												<span
+													class="btn btn-soft-primary btn-sm waves-effect waves-light">Lihat</span>
+										</td>
 										</a>
 									</tr>
+									<?php }}?>
+
 								</tbody>
 							</table>
 

@@ -9,6 +9,7 @@ class Main_controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('View_models', 'view');
+		$this->load->model('Logic', 'logic');
 	}
 	
 	public function index()
@@ -41,11 +42,14 @@ class Main_controller extends CI_Controller {
 	
 	public function detail_data()
 	{
+		
+		$load = $this->logic->daftarByPembimbing($this->session->userdata('nomor_pengguna'));
 
 		$data = array(
 			'title' => 'Daftar Log Book',
 			'pages' => 'page/pembimbing/daftar_siswa',
 			'pageTitle' => 'Daftar Siswa',
+			'load'		=> $load
 		
 		);
 
