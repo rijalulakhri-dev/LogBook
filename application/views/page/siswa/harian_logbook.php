@@ -29,10 +29,16 @@
 						<div class="card-body">
 						<p class="card-text">
 							<h5><?= $d->set_date ?></h5>
+							<?php if (empty($d->kegiatan) && empty($d->pengalaman)) { ?>
+								<a href="<?= base_url('siswa/logbook/kirim_logbook/' . $d->week_number . '/' . strtotime($d->set_date)); ?>">
+									<button type="button" class="btn btn-soft-primary waves-effect waves-light">
+										<i class="bx bx-plus font-size-16 align-middle me-2"></i> BUAT LAPORAN HARIAN
+									</button>
+								</a>
+    						<?php } else { ?>
+								<button type="button" class="btn btn-soft-primary waves-effect waves-light"> <i class="bx bx-check font-size-16 align-middle me-2"></i> SELESAI </button>
+							<?php } ?>
 							
-							<hr><a href="<?= base_url('siswa/logbook/kirim_logbook/' . $d->week_number . '/' . strtotime($d->set_date)); ?>">
-								<button type="button" class="btn btn-soft-primary waves-effect waves-light"><i class="bx bx-plus font-size-16 align-middle me-2"></i> BUAT LAPORAN HARIAN</button>
-							</a>
 							</p>
 						</div>
 					</div>

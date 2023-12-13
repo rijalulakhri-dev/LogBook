@@ -15,7 +15,7 @@
 					<div class="card-body">
 						<div class="d-flex align-items-center">
 							<div class="flex-grow-1">
-								<span class="text-muted mb-3 lh-1 d-block text-truncate">Master</span>
+								<span class="text-muted mb-3 lh-1 d-block text-truncate">Log Book</span>
 								<h2 class="mb-3">Welcome, <?= ucfirst($this->session->userdata('nama')); ?>!</h2>
 							</div>
 						</div>

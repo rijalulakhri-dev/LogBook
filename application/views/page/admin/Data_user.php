@@ -37,7 +37,7 @@
 									<td><?= $d->nomor_pengguna ?></td>
 									<td><?= $d->jenisKelamin ?></td>
 									<td><?= $d->level ?></td>
-									<td><?= $d->terdaftar ?></td>
+									<td><?= date_indo($d->terdaftar) ?></td>
 								</tr>
 								<?php } ?>
 							</tbody>

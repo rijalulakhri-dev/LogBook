@@ -18,28 +18,47 @@
 
                             <li class="menu-title" data-key="t-apps">Navigation</li>
 
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
+							<?php if ($this->session->userdata('level') == 3) { ?>
+								<li>
+									<a href="javascript: void(0);" class="has-arrow">
+										<i data-feather="user"></i>
+										<span data-key="t-ecommerce">Pendaftaran</span>
+									</a>
+									<ul class="sub-menu" aria-expanded="false">
+										<li><a href="<?php echo $this->session->userdata('siswa') == 1 ? base_url('siswa/profil') : base_url('siswa/registrasi_program'); ?>" key="t-products"><?php echo $this->session->userdata('siswa') == 1 ? 'Profil' : 'Registrasi Program'; ?></a></li>
+									</ul>
+								</li>
+							<?php } ?>
+
+							<?php if ($this->session->userdata('level') == 2 ) { ?>
+							<li>
+                                <a href="<?= base_url(); ?>">
                                     <i data-feather="user"></i>
-                                    <span data-key="t-ecommerce">Pendaftaran</span>
+                                    <span data-key="t-chat">Profil</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?php echo $this->session->userdata('siswa') == 1 ? base_url('siswa/profil') : base_url('siswa/registrasi_program'); ?>" key="t-products"><?php echo $this->session->userdata('siswa') == 1 ? 'Profil' : 'Registrasi Program'; ?></a></li>
-
-                                    <li><a href="<?= base_url('pembimbing/daftar_logbook'); ?>" key="t-products">Daftar Log Book</a></li>
-                                </ul>
                             </li>
 
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow">
+							<li>
+                                <a href="<?= base_url('pembimbing/daftar_logbook'); ?>">
                                     <i data-feather="check-square"></i>
-                                    <span data-key="t-email">Pelaporan</span>
+                                    <span data-key="t-chat">Daftar Log Book</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-									<li><a href="<?php echo $this->session->userdata('time') == 1 ? base_url('siswa/logbook/waktu/minggu') : base_url('siswa/logbook/waktu'); ?>" data-key="t-inbox"><?php echo $this->session->userdata('time') == 1 ? 'Log Book Harian' : 'Isi Waktu'; ?></a></li>
-                                    <li><a href="<?= base_url('siswa/daftar_logbook'); ?>" data-key="t-read-email">Daftar Log Book</a></li>
-                                </ul>
                             </li>
+
+							<?php } ?>
+
+							<?php if ($this->session->userdata('level') == 3) { ?>
+								<li>
+									<a href="javascript: void(0);" class="has-arrow">
+										<i data-feather="check-square"></i>
+										<span data-key="t-email">Pelaporan</span>
+									</a>
+									<ul class="sub-menu" aria-expanded="false">
+										<li><a href="<?php echo $this->session->userdata('time') == 1 ? base_url('siswa/logbook/waktu/minggu') : base_url('siswa/logbook/waktu'); ?>" data-key="t-inbox"><?php echo $this->session->userdata('time') == 1 ? 'Log Book Harian' : 'Isi Waktu'; ?></a></li>
+										<li><a href="<?= base_url('siswa/daftar_logbook'); ?>" data-key="t-read-email">Daftar Log Book</a></li>
+									</ul>
+								</li>
+							<?php } ?>
 
                             <li>
 							<a href="javascript: void(0);" class="has-arrow">

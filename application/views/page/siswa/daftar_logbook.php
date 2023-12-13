@@ -26,18 +26,30 @@
 							</tr>
 							</thead>
 							<tbody>
-								<?php $no = 1; foreach ($data as $weekNumber => $weekDay) { ?>	
-								<tr>
-									<td><?= $no++ ?></td>
-									<td>Minggu <?= $weekNumber ?></td>
-									<td><?= reset($weekDay)['set_date'] . ' sampai dengan ' . end($weekDay)['set_date']; ?></td>
-									<td>minggu1.pdf</td>
-									<td>
-										<button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Materi</button>
-										<button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Redaksi</button>
-									</td>
-								</tr>
-								<?php } ?>
+							<?php $no = 1;
+                                    foreach ($data as $weekNumber => $weekDay) {
+                                        $isDataComplete = true;
+
+                                        foreach ($weekDay as $dayData) {
+                                            if (empty($dayData['kegiatan']) || empty($dayData['pengalaman'])) {
+                                                $isDataComplete = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if ($isDataComplete) { ?>
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <td>Minggu <?= $weekNumber ?></td>
+                                                <td><?= reset($weekDay)['set_date'] . ' sampai dengan ' . end($weekDay)['set_date']; ?></td>
+                                                <td><a href="<?= base_url('cetak/' . $weekNumber); ?>" target="_blank"><button type="button" class="btn btn-soft-primary waves-effect waves-light"><i class="bx bx-printer font-size-16 align-middle me-2"></i>Cetak Log Book</button></a></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Materi</button>
+                                                    <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">Pembimbing Redaksi</button>
+                                                </td>
+                                            </tr>
+                                        <?php }
+                                    } ?>
 							</tbody>
 						</table>
 

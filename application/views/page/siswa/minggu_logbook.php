@@ -32,11 +32,24 @@
 									<div class="col-md-10">
 										<h5>Minggu Ke-<?= $weekNumber; ?></h5>
 										<span><?= reset($weekDay)['set_date'] . ' sampai dengan ' . end($weekDay)['set_date']; ?></span> 
-										<hr>
-										<a href="<?= base_url('siswa/logbook/waktu/minggu/harian/' . $weekNumber ); ?>">
-										
-											<button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-task font-size-16 align-middle me-2"></i> Lengkapi Laporan Harian</button>
-										</a>
+										<hr> 
+										<?php 
+											$isLaporanComplete = true;
+
+											foreach ($weekDay as $dayData) {
+												if (empty($dayData['kegiatan']) || empty($dayData['pengalaman'])) {
+													$isLaporanComplete = false;
+													break;
+												}
+											}
+
+											if ($isLaporanComplete) { ?>
+											<a href="<?= base_url('cetak/' . $weekNumber ); ?>" target="_blank"><button type="button" class="btn btn-soft-primary waves-effect waves-light"><i class="bx bx-printer font-size-16 align-middle me-2"></i>Cetak Log Book</button></a>
+										<?php } else { ?>
+											<a href="<?= base_url('siswa/logbook/waktu/minggu/harian/' . $weekNumber ); ?>">
+												<button type="button" class="btn btn-primary waves-effect waves-light"><i class="bx bx-task font-size-16 align-middle me-2"></i> Lengkapi Laporan Harian</button>
+											</a>
+										<?php } ?>
 									</div>
 									<div class="col-md-2">
 										Progress Mengisi LogBook

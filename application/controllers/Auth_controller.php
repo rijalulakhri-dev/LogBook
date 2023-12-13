@@ -39,8 +39,7 @@ class Auth_controller extends CI_Controller {
                         'nama' => $data['nama'],
                         'nomor_pengguna' => $data['nomor_pengguna'],
                         'password' => $data['password'],
-                        'level' => '1',
-                        'isPembimbing' => $data['isPembimbing'],
+                        'level' => '1'
                     ));
                     redirect('Dashboard');
                     break;

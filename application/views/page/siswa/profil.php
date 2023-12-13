@@ -44,11 +44,11 @@
 									</tr>
 									<tr>
 										<td class="f-w-700 text-dark" style="width:70%"><p class="fs-5">Pembimbing Materi</p></td>
-										<td class="f-w-600 text-dark"><p class="fs-5">: <?= $d->pemMateriB ?></p></td>
+										<td class="f-w-600 text-dark"><p class="fs-5">: <?= $this->view->pembimbing_name($d->pemMateriB); ?></p></td>
 									</tr>
 									<tr>
 										<td class="f-w-700 text-dark" style="width:70%"><p class="fs-5">Pembimbing Redaksi</p></td>
-										<td class="f-w-600 text-dark"><p class="fs-5">: <?= $d->pemRedaksiB ?></p></td>
+										<td class="f-w-600 text-dark"><p class="fs-5">: <?= $this->view->pembimbing_name($d->pemRedaksiB) ?></p></td>
 									</tr>
 									<?php } ?>
 								</table>

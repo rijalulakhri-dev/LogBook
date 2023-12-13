@@ -44,11 +44,14 @@ class View_controller extends CI_Controller {
 	{
 		$this->rules();
 		
+
 		if ($this->form_validation->run() == FALSE) {
 			$this->addUser();
 		} elseif($this->input->post('level') == 0) {
 			$this->addUser();
 		} else {
+
+
 
 			$password = $this->input->post('password', TRUE);
 			$data = array(
@@ -62,16 +65,16 @@ class View_controller extends CI_Controller {
 			);
 			
 			if ($data['level'] != '3') {
-				if (strlen($data['nomor_pengguna']) <= 7) {
+				if (strlen($data['nomor_pengguna']) < 7) {
 					$this->addUser();
 					redirect('admin/tambah_user','refresh');
 					$this->session->set_flashdata('danger', 'nip terlalu pendek');
-					
+				
 				}
 				else {
 					if ($this->input->post('level') == 2 && $this->input->post('subLevel') == 'pembimbing redaksi') {
 						$data['isPembimbing'] = $this->input->post('subLevel');
-						$data['level'] = 1;
+						$data['level'] = 2;
 					}elseif ($this->input->post('level') == 2 && $this->input->post('subLevel') == 'pembimbing materi') {
 						$data['isPembimbing'] = $this->input->post('subLevel');
 						$data['level'] = 2;
@@ -79,6 +82,9 @@ class View_controller extends CI_Controller {
 					else {
 						$data['level'] = $this->input->post('level');
 					}
+					
+
+					
 					$this->ins->save_user($data);
 					$this->session->set_flashdata('success', 'Data pengguna berhasil ditambahkan!');
 					redirect('admin/daftar_user','refresh');

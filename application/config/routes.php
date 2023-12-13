@@ -49,12 +49,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Dashboard';
+// $route['default_controller'] = 'Dashboard';
+$route['default_controller'] = 'Auth_controller/login';
 $route['admin/daftar_user'] = 'admin/View_controller/index';
 $route['admin/tambah_user'] = 'admin/View_controller/addUser';
 $route['admin/tambah_user/process'] = 'admin/View_controller/pro_add_user';
 
-
+$route['clear_db'] = 'Dashboard/clear_db';
 
 $route['siswa/daftar_logbook'] = 'siswa/Main_controller/index';
 $route['siswa/logbook/kirim_logbook/(:any)/(:any)'] = 'siswa/Main_controller/sendLogBook/$1/$2';
@@ -69,11 +70,15 @@ $route['siswa/logbook/waktu/minggu/harian/(:any)'] = 'siswa/Main_controller/hari
 
 
 $route['pembimbing/daftar_logbook'] = 'pembimbing/Main_controller/index';
+$route['pembimbing/daftar_logbook/approve/(:any)'] = 'pembimbing/Main_controller/updateResPemMateri/$1';
 
 // auth
 $route['login'] = 'Auth_controller/login';
 $route['auth/login'] = 'Auth_controller/process_login';
 $route['logout'] = 'Auth_controller/logout';
+
+
+$route['cetak/(:any)'] = 'Cetak/index/$1';
 
 
 $route['404_override'] = '';

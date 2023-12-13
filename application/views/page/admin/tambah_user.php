@@ -9,7 +9,9 @@
 				<div class="col-sm-8">
 					<div class="card">
 						<div class="card-body">
+
 							<?php $this->load->view('partials/alerts'); ?>
+							<?php echo validation_errors(); ?>
 							<form method="POST" action="<?= base_url($action); ?>" class="needs-validation">
 								<div class="row g-3">
 									<div class="col-md-6 mb-3">

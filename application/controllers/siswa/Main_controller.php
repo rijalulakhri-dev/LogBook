@@ -37,7 +37,6 @@ class Main_controller extends CI_Controller {
 		
 	}
 
-
 	public function sendLogBook($a, $b)
 	{
 
@@ -83,18 +82,16 @@ class Main_controller extends CI_Controller {
         );
 		
 		$this->ins->saveLogBook($data,$dataTwo, $a, $b, $kondisi);
-		redirect('siswa/daftar_logbook','refresh');
+		redirect('siswa/logbook/waktu/minggu','refresh');
 		
 	}
-
-
 
 	public function proRegisterProgram()
 	{
 		$data = array(
 			'namaB' => $this->session->userdata('nama'),
 			'noBadgeB' => $this->session->userdata('nomor_pengguna'),
-			'nikB' => $this->input->post('nik'),
+			'nimB' => $this->input->post('nim'),
 			'pendidikanB' => $this->input->post('lembaga_pendidikan'),
 			'jurusanB' => $this->input->post('jurusan'),
 			'departemenB' => $this->input->post('departemen'),
@@ -102,22 +99,25 @@ class Main_controller extends CI_Controller {
 			'pemRedaksiB' => $this->input->post('pembimbing_redaksi')
 		);
 
-		$this->session->set_userdata('siswa', 1);
-
-		$this->ins->saveRegister($data);
-		redirect('siswa/profil','refresh');
+		if ($data['pemMateriB'] == $data['pemRedaksiB']) {
+			$this->session->set_flashdata('danger', 'Nama pembimbing tidak boleh sama');
+			$this->registerProgram();
+			
+		} else {
+	
+			$this->session->set_userdata('siswa', 1);
+			
+			$this->ins->saveRegister($data);
+			redirect('siswa/profil','refresh');
+		}
 		
 
 	}
 
-
-
 	public function profilBiodata()
 	{
 
-		$load = $this->view->getProfil()->result();
-
-	
+		$load = $this->view->getProfil()->result();	
 		$data = array(
 			'title' => 'Profil',
 			'pages' => 'page/siswa/profil',
@@ -131,11 +131,14 @@ class Main_controller extends CI_Controller {
 
 	public function registerProgram()
 	{
+		$load = $this->view->check_pembimbing()->result();
+
 		$data = array(
 			'title' => 'Registrasi Program',
 			'pages' => 'page/siswa/register_program',
 			'pageTitle' => 'Registrasi Program',
-			'action' => 'siswa/process/registrasi_program'
+			'action' => 'siswa/process/registrasi_program',
+			'pembimbing' => $load
 		);
 
 		$this->load->view('main', $data);
@@ -221,8 +224,6 @@ class Main_controller extends CI_Controller {
 
 	public function harianLog($a)
 	{
-
-
 		$load = $this->view->getWeek_specific($a)->result();
 		$data = array(
 			'title' => 'Isi Kegiatan',

@@ -6,16 +6,19 @@ class View_models extends CI_Model {
 	public function getProfil()
 	{
 
+		$noBadge = $this->session->userdata('nomor_pengguna');
+		$this->db->where('noBadgeB', $noBadge);
+		return $this->db->get('tb_biodata');
 		// $this->db->select('*');
         // $this->db->from('tb_biodata');
         // $this->db->join('tb_auth', 'tb_biodata.noBadgeB = tb_auth.nomor_pengguna OR tb_biodata.nikB = tb_auth.nomor_pengguna', 'left');
         // return $this->db->get();
-		return $this->db->get('tb_biodata');
 		
 	}
 
 	public function getWeek()
 	{
+		// before
 		$this->db->where('noBadge', $this->session->userdata('nomor_pengguna'));
 		$this->db->order_by('set_date', 'asc');
         $query = $this->db->get('weekly_data');
@@ -43,10 +46,6 @@ class View_models extends CI_Model {
 		
 	}
 
-	public function getDay_specific()
-	{
-		
-	}
 
 	public function last_number_project()
 	{
@@ -64,9 +63,27 @@ class View_models extends CI_Model {
 
 	public function get_logBook()
 	{
-		return $this->db->get('trx_detail');
+		return $this->db->get('weekly_data');
 		
 	}
+
+
+	function check_pembimbing()
+	{
+		$this->db->where('isPembimbing IS NOT NULL', null, false);
+		$this->db->where('level', 2);
+		return $this->db->get('tb_auth');
+	}
+
+	function pembimbing_name($nomor_pengguna)
+	{
+		$this->db->select('nomor_pengguna, nama');
+		$this->db->where('nomor_pengguna', $nomor_pengguna);
+		return $this->db->get('tb_auth')->row()->nama;	
+		
+	}
+	
+
 
 }
 
