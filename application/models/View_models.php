@@ -82,6 +82,11 @@ class View_models extends CI_Model {
 		return $this->db->get('tb_auth')->row()->nama;	
 		
 	}
+
+	function getDataByBadge()
+	{
+		
+	}
 	
 
 

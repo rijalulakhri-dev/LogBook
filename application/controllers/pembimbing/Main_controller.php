@@ -38,30 +38,24 @@ class Main_controller extends CI_Controller {
 
 		
 	}
-
-	public function updateResPemMateri($weekNumber)
+	
+	public function detail_data()
 	{
-		// Ambil data mingguan berdasarkan nomor pengguna dan nomor minggu
-		$weekData = $this->view->getWeeklyData($weekNumber);
-	
- 
-		// Proses pembaruan nilai resPemMateri di tb_trx
-		if ($weekData) {
-			$noBadge = $this->session->userdata('nomor_pengguna');
-	
-			$trxData = array(
-				'resPemMateri' => '1' // Ubah sesuai kebutuhan
-			);
-	
-			$this->view->updateResPemMateri($noBadge, $weekNumber);
-		}
 
+		$data = array(
+			'title' => 'Daftar Log Book',
+			'pages' => 'page/pembimbing/daftar_siswa',
+			'pageTitle' => 'Daftar Siswa',
+		
+		);
+
+		$this->load->view('main', $data);
 		
 
-	
-		// Redirect atau tampilkan pesan sesuai kebutuhan
-		redirect('pembimbing/daftar_logbook');
+		
 	}
+
+
 	
 
 }

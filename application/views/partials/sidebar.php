@@ -39,9 +39,9 @@
                             </li>
 
 							<li>
-                                <a href="<?= base_url('pembimbing/daftar_logbook'); ?>">
+                                <a href="<?= base_url('pembimbing/daftar_siswa'); ?>">
                                     <i data-feather="check-square"></i>
-                                    <span data-key="t-chat">Daftar Log Book</span>
+                                    <span data-key="t-chat">Daftar Siswa</span>
                                 </a>
                             </li>
 

@@ -70,6 +70,7 @@ $route['siswa/logbook/waktu/minggu/harian/(:any)'] = 'siswa/Main_controller/hari
 
 
 $route['pembimbing/daftar_logbook'] = 'pembimbing/Main_controller/index';
+$route['pembimbing/daftar_siswa'] = 'pembimbing/Main_controller/detail_data';
 $route['pembimbing/daftar_logbook/approve/(:any)'] = 'pembimbing/Main_controller/updateResPemMateri/$1';
 
 // auth
