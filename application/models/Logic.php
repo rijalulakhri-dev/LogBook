@@ -25,6 +25,13 @@ class Logic extends CI_Model {
 		
 	}
 	
+	function daftarByPembimbing($nomor_pengguna)
+	{
+		$this->db->where('pemMateriB' , $nomor_pengguna);
+		$this->db->or_where('pemRedaksiB' , $nomor_pengguna);
+		//   $this->db->join('weekly', 'tb_biodata.noBadgeB = tb_auth.nomor_pengguna OR tb_biodata.nikB = tb_auth.nomor_pengguna', 'left');
+		return $this->db->get('tb_biodata');
+	}
 
 }
 
